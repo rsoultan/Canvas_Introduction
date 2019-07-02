@@ -7,9 +7,10 @@ class Circle {
     }
     drawCircle(context) {
         context.beginPath();
-        context.fillStyle = this.fillStyle;
+        context.lineWidth = "5";
+        context.strokeStyle = this.fillStyle;
         context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
-        context.fill();
+        context.stroke();
     }
 }
 var canvas = document.getElementById("my_canvas");
