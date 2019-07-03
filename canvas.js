@@ -12,9 +12,6 @@ class Circle {
         context.stroke();
     }
 }
-var canvas = document.getElementById("my_canvas");
-var context = canvas.getContext("2d");
-var CircleArray = InitCircleArray();
 
 function InitCircleArray() {
     var CircleArray = [];
@@ -31,4 +28,29 @@ function Draw(CircleArray) {
     }
 }
 
+function GetMousePos() {
+    var rect = canvas.getBoundingClientRect();
+
+    return {x: event.clientX - rect.left, y: event.clientY - rect.top};
+}
+
+function ClickEventHandler() {
+    var pos = GetMousePos();
+    var dx = 0;
+    var dy = 0;
+
+    for (var index = 0; index < CircleArray.length; index++) {
+        dx = CircleArray[index].x - pos.x;
+        dy = CircleArray[index].y - pos.y;
+        if (dx * dx + dy * dy <= CircleArray[index].radius * CircleArray[index].radius) {
+            alert("inside the circle " + index);
+        }
+    }
+}
+
+var CircleArray = InitCircleArray();
+var canvas = document.getElementById("my_canvas");
+var context = canvas.getContext("2d");
+
+canvas.addEventListener("click", ClickEventHandler);
 Draw(CircleArray);
