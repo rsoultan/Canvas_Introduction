@@ -5,7 +5,7 @@ class Circle {
         this.radius = radius;
         this.is_selected = is_selected;
     }
-    drawCircle(context) {
+    DrawCircle(context) {
         context.beginPath();
         context.lineWidth = "5";
         context.strokeStyle = "#4C8"
@@ -15,8 +15,19 @@ class Circle {
     MoveCircle() {
         this.x = event.offsetX;
         this.y = event.offsetY;
-        console.log(this.x);
-        console.log(this.y);
+    }
+}
+
+class Line {
+    constructor(pointA, pointB) {
+        this.pointA = pointA;
+        this.pointB = pointB;
+    }
+    DrawLine(context) {
+        context.beginPath();
+        context.moveTo(this.pointA.x, this.pointA.y);
+        context.lineTo(this.pointB.x, this.pointB.y);
+        context.stroke();
     }
 }
 
@@ -29,9 +40,9 @@ function InitCircleArray() {
     return (CircleArray);
 }
 
-function Draw(CircleArray) {
+function DrawCircle(CircleArray) {
     for (var index = 0; index < CircleArray.length; index++) {
-        CircleArray[index].drawCircle(context);
+        CircleArray[index].DrawCircle(context);
     }
 }
 
@@ -63,6 +74,7 @@ canvas.addEventListener("mousedown",function(event) {
         dy = CircleArray[index].y - event.offsetY;
         if (dx * dx + dy * dy <= CircleArray[index].radius * CircleArray[index].radius) {
             CircleArray[index].is_selected = true;
+            return;
         }
     }
 });
@@ -72,17 +84,14 @@ canvas.addEventListener("mouseleave", function(event) {
     }
 });
 canvas.addEventListener("mousemove", function(event) {
-    console.log(event.offsetX);
-    console.log(event.offsetY);
-
     for (var index = 0; index < CircleArray.length; index++) {
         if (CircleArray[index].is_selected == true) {
             CircleArray[index].MoveCircle();
             context.clearRect(0, 0, 800, 600);
-            Draw(CircleArray);
+            DrawCircle(CircleArray);
             ClickEventHandler();
         }
     }
 });
 
-Draw(CircleArray);
+DrawCircle(CircleArray);

@@ -7,3 +7,17 @@ canvas {
     border: 10px
     solid orange;
 }
+/*
+class Line {
+    constructor(pointA, pointB) {
+        this.pointA = pointA;
+        this.pointB = pointB;
+    }
+    DrawLine(context) {
+        context.beginPath();
+        context.moveTo(this.pointA.x, this.pointA.y);
+        context.lineTo(this.pointB.x, this.pointB.y);
+        context.stroke();
+    }
+}
+*/
