@@ -13,7 +13,7 @@ class Line {
         this.pointA = pointA;
         this.pointB = pointB;
     }
-    DrawLine(context) {
+    Draw(context) {
         context.beginPath();
         context.moveTo(this.pointA.x, this.pointA.y);
         context.lineTo(this.pointB.x, this.pointB.y);
